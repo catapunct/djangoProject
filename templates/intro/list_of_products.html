@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %} All products {% endblock %}
+
+{%  block content %}
+
+<div class=""container-fluid"">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1>List of products</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name of product</th>
+                        <th>Price</th>
+                        <th>Year</th>
+                        <th>Memory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                    {%  if product.year == 2022 %}
+                        <tr>
+                            <td>{{ product.name_of_product }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.year }}</td>
+                            <td>{{ product.memory }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{#<a class="btn btn-success" href="{% url 'list-of-songs' %}">Go to list of songs</a>#}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>All products</title>#}
+{#</head>#}
+{#<body>#}
+{#<h1>List of products</h1>#}
+{#<table border="1">#}
+{#    <thead>#}
+{#        <tr>#}
+{#            <th>Name of product</th>#}
+{#            <th>Price</th>#}
+{#            <th>Year</th>#}
+{#            <th>Memory</th>#}
+{#        </tr>#}
+{#    </thead>#}
+{#    <tbody>#}
+{#    {% for product in products %}#}
+{#        {%  if product.year == 2022 %}#}
+{#            <tr>#}
+{#                <td>{{ product.name_of_product }}</td>#}
+{#                <td>{{ product.price }}</td>#}
+{#                <td>{{ product.year }}</td>#}
+{#                <td>{{ product.memory }}</td>#}
+{#            </tr>#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
+{#    </tbody>#}
+{#</table>#}
+{##}
+{#<a href="{% url 'list-of-songs' %}">Go to list of products</a>#}
+{##}
+{#</body>#}
+{#</html>#}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %} List of trainers {% endblock %}
+
+{% block content %}
+    <br><br>
+    <div class="container-fluid">
+        <div class="row">
+            {% for trainer in all_trainers %}
+                <div class="col-md-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title text-center">{{ trainer.first_name }} {{ trainer.last_name }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted text-center">{{ trainer.course }}</h6>
+                            <p class="card-text text-center">{{ trainer.description|slice:":50" }}</p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu">
+                                    {% if perms.trainer.change_trainer %}
+                                        <li><a class="dropdown-item" href="{% url 'update-trainers' trainer.id %}">Update</a></li>
+                                    {% endif %}
+                                    <li><a class="dropdown-item" href="#">Delete</a></li>
+                                    {% if perms.trainer.view_trainer %}
+                                        <li><a class="dropdown-item" href="{% url 'details-trainer' trainer.id %}">View details</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} Trainer {{ trainer.first_name }} {{ trainer.last_name }} {% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <br><br>
+                <div class="card text-center">
+                    <div class="card-header">
+                        Details about the trainer: {{ trainer }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ trainer }}</h5>
+                        <p class="card-text">Description: {{ trainer.description }}</p>
+                        <p class="card-text">Course: {{ trainer.course }}</p>
+                        <p class="card-text">List of students:
+                            {% if all_student_per_trainer %}
+                                <ul>
+                                {% for student in all_student_per_trainer %}
+                                    <li>{{ student }}</li>
+                                {% endfor %}
+                                </ul>
+
+                            {% else %}
+                                No students
+                            {% endif %}
+
+                        </p>
+                        <a href="{% url 'list-of-trainers' %}" class="btn btn-secondary">Go back</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Created at: {{ trainer.created_at|date:"d-m-Y H:i" }}/ Updated
+                        at {{ trainer.updated_at|date:"d-m-Y H:i" }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
